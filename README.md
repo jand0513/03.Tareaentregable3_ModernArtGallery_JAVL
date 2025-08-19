@@ -102,7 +102,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 👤 Autor
 
-Tu Nombre - [tu-email@ejemplo.com]
+Tu Nombre - j_andresvillarroel@hotmail.com
 
 ## 🤝 Contribución
 
