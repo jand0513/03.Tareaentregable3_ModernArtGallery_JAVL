@@ -1,0 +1,80 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ==========================================================================
+// GOOGLE FONTS IMPORT
+// ==========================================================================
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;700;900&family=Outfit:wght@300;400;700&display=swap');
+
+// ==========================================================================
+// TYPOGRAPHY CLASSES
+// ==========================================================================
+
+.heading-xl {
+  @include heading-xl;
+}
+
+.heading-l {
+  @include heading-l;
+}
+
+.heading-m {
+  @include heading-m;
+}
+
+.heading-s {
+  @include heading-s;
+}
+
+.body-m {
+  @include body-m;
+}
+
+.body-s {
+  @include body-s;
+}
+
+// ==========================================================================
+// HEADINGS
+// ==========================================================================
+
+h1 {
+  @include heading-xl;
+}
+
+h2 {
+  @include heading-l;
+}
+
+h3 {
+  @include heading-m;
+}
+
+h4 {
+  @include heading-s;
+}
+
+// ==========================================================================
+// BODY TEXT
+// ==========================================================================
+
+p {
+  @include body-m;
+  
+  &.small {
+    @include body-s;
+  }
+}
+
+// ==========================================================================
+// LINKS
+// ==========================================================================
+
+a {
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: $color-accent;
+  }
+}

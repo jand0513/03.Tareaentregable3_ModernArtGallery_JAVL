@@ -1,0 +1,145 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ==========================================================================
+// ESTILOS PARA PÁGINA DE UBICACIÓN
+// ==========================================================================
+
+// ==========================================================================
+// SECCIÓN HERO DE LA PÁGINA DE UBICACIÓN
+// ==========================================================================
+
+.location-hero {
+  position: relative;
+  
+  @include respond-to(desktop) {
+    max-width: 1440px; // Ancho máximo para mantener consistencia con página principal
+    margin: 0 auto; // Centrado horizontal en pantallas anchas
+  }
+  
+  &__image {
+    position: relative;
+    
+    img {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+
+      @include respond-to(tablet) {
+        height: 600px;
+      }
+
+      @include respond-to(desktop) {
+        height: 600px;
+      }
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+
+    @include respond-to(tablet) {
+      padding-left: $spacing-lg;
+    }
+
+    @include respond-to(desktop) {
+      padding: 0;
+      top: 0;
+      left: 156px; // Posicionado con margen específico desde la izquierda
+      height: 100%;
+      display:inline-block;
+      align-items: center;
+    }
+  }
+}
+
+// ==========================================================================
+// LOCATION INFO SECTION
+// ==========================================================================
+
+.location-info {
+  background-color: $color-dark;
+  color: $color-white;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+
+    @include respond-to(tablet) {
+      grid-template-columns: auto 1fr;
+      gap: $spacing-xl;
+      align-items: start;
+    }
+
+    @include respond-to(desktop) {
+      gap: 125px;
+    }
+
+    // H1 directo en el content (columna izquierda en tablet)
+    > h1 {
+      @include heading-l;
+      color: $color-white;
+      margin-bottom: $spacing-lg;
+
+      @include respond-to(tablet) {
+        margin-bottom: 0;
+        grid-column: 1;
+      }
+
+      @include respond-to(desktop) {
+        margin-bottom: $spacing-xl;
+        width: 75%;
+      }
+    }
+
+    // Estilos para la imagen directa en el contenido
+    picture {
+      display: block;
+      
+      img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+
+        @include respond-to(tablet) {
+          height: 480px;
+        }
+
+        @include respond-to(desktop) {
+          height: 480px;
+        }
+      }
+    }
+  }
+
+  &__text {
+    @include respond-to(tablet) {
+      grid-column: 2;
+    }
+
+    address {
+      margin-bottom: $spacing-lg;
+      font-style: normal;
+
+      h2 {
+        @include heading-s;
+        color: $color-gold;
+        margin-bottom: $spacing-sm;
+      }
+
+      p {
+        @include body-m;
+        color: $color-white;
+      }
+    }
+
+    > p {
+      @include body-m;
+      color: $color-white;
+    }
+  }
+}

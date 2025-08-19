@@ -1,0 +1,150 @@
+// ==========================================================================
+// RESPONSIVE MIXINS - MOBILE FIRST
+// ==========================================================================
+
+@use './variables' as *;
+
+// Mixin principal para media queries (mobile first)
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (min-width: $breakpoint-tablet) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop {
+    @media (min-width: $breakpoint-desktop) {
+      @content;
+    }
+  }
+}
+
+// ==========================================================================
+// BUTTON MIXINS
+// ==========================================================================
+
+// Mixin base para botones
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: $font-primary;
+  font-weight: $font-weight-bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 3.636px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+  }
+}
+
+// Botón primario (Our Location style)
+@mixin button-primary {
+  @include button-base;
+  background-color: $color-dark;
+  color: $color-white;
+  padding-left: 32px;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 72px;
+    background-color: $color-gold;
+    background-image: url('data:image/svg+xml,<svg width="10" height="24" xmlns="http://www.w3.org/2000/svg"><path stroke="%23FFF" fill="none" d="m1 0 8 12-8 12"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 32px;
+  }
+
+  &:hover {
+    background-color: $color-gold;
+    
+    &::after {
+      background-color: $color-dark;
+    }
+  }
+}
+
+// Botón secundario (Back to Home style)
+@mixin button-secondary {
+  @include button-base;
+  background-color: $color-gold;
+  color: $color-white;
+  padding-right:32px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 72px;
+    background-color: $color-dark;
+    background-image: url('data:image/svg+xml,<svg width="10" height="24" xmlns="http://www.w3.org/2000/svg"><path stroke="%23FFF" fill="none" d="m9 24-8-12 8-12"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 32px;
+  }
+
+  &:hover {
+    background-color: $color-dark;
+    
+    &::before {
+      background-color: $color-gold;
+    }
+  }
+}
+
+// ==========================================================================
+// TYPOGRAPHY MIXINS
+// ==========================================================================
+
+@mixin heading-xl {
+  font-family: $font-primary;
+  font-weight: $font-weight-black;
+  font-size: clamp(60px, 8vw, $font-size-heading-xl);
+  line-height: clamp(55px, 7.5vw, $line-height-heading-xl);
+  text-transform: uppercase;
+}
+
+@mixin heading-l {
+  font-family: $font-primary;
+  font-weight: $font-weight-black;
+  font-size: clamp(50px, 6vw, $font-size-heading-l);
+  line-height: clamp(45px, 5.5vw, $line-height-heading-l);
+  text-transform: uppercase;
+}
+
+@mixin heading-m {
+  font-family: $font-primary;
+  font-weight: $font-weight-black;
+  font-size: clamp(36px, 5vw, $font-size-heading-m);
+  line-height: clamp(32px, 4.5vw, $line-height-heading-m);
+  text-transform: uppercase;
+}
+
+@mixin heading-s {
+  font-family: $font-primary;
+  font-weight: $font-weight-black;
+  font-size: clamp(32px, 4vw, $font-size-heading-s);
+  line-height: clamp(32px, 4vw, $line-height-heading-s);
+  text-transform: uppercase;
+}
+
+@mixin body-m {
+  font-family: $font-secondary;
+  font-weight: $font-weight-light;
+  font-size: clamp(18px, 2vw, $font-size-body-m);
+  line-height: clamp(28px, 3vw, $line-height-body-m);
+}
+
+@mixin body-s {
+  font-family: $font-secondary;
+  font-weight: $font-weight-light;
+  font-size: $font-size-body-s;
+  line-height: $line-height-body-s;
+}

@@ -1,0 +1,185 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ==========================================================================
+// FOOTER - MOBILE FIRST
+// ==========================================================================
+
+.footer {
+  background-color: $color-dark;
+  color: $color-white;
+  padding: $spacing-lg 0;
+
+  @include respond-to(tablet) {
+    padding: $spacing-xl 0;
+  }
+
+  @include respond-to(desktop) {
+    max-width: 1440px; // Ancho máximo para mantener consistencia con hero
+    margin: 0 auto; // Centrado horizontal en pantallas anchas
+  }
+
+  // Variante de footer para página de ubicación (colores dorado/café)
+  &--dark {
+    background-color: $color-gold;
+    color: $color-dark;
+
+    .footer__title,
+    .footer__logo h4 {
+      color: $color-dark;
+    }
+
+    .footer__description,
+    .footer__text p {
+      color: $color-dark;
+    }
+
+    .footer__social a {
+      &:focus {
+        outline: 2px solid $color-dark;
+        outline-offset: 2px;
+      }
+
+      svg path {
+        fill: $color-dark;
+      }
+
+      &:hover svg path {
+        fill: $color-dark;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__content {
+    // Mobile: layout vertical
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    @include respond-to(tablet) {
+      // Tablet/Desktop: layout horizontal
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__info {
+    // Mobile: info completa arriba
+    @include respond-to(tablet) {
+      flex: 1;
+      max-width: 430px;
+    }
+  }
+
+  &__title {
+    @include heading-s;
+    color: $color-white;
+    line-height: 1.2;
+    margin-bottom: $spacing-sm;
+
+    @include respond-to(tablet) {
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  &__description {
+    @include body-s;
+    color: $color-white;
+    margin-bottom: $spacing-md;
+
+    @include respond-to(tablet) {
+      margin-bottom: 0;
+    }
+  }
+
+  // Estilos para footer de página location
+  &__logo {
+    @include respond-to(tablet) {
+      flex: 0 0 auto;
+    }
+
+    h4 {
+      @include heading-s;
+      color: $color-white;
+      line-height: 1.2;
+      margin-bottom: $spacing-sm;
+
+      @include respond-to(tablet) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__text {
+    @include respond-to(tablet) {
+      flex: 1;
+      max-width: 430px;
+      margin: 0 $spacing-lg;
+    }
+
+    p {
+      @include body-s;
+      color: $color-white;
+      margin-bottom: $spacing-md;
+
+      @include respond-to(tablet) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: $spacing-sm;
+
+    @include respond-to(tablet) {
+      align-self: flex-start;
+      gap: $spacing-md; // Más espacio entre iconos en tablet
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+
+      @include respond-to(tablet) {
+        width: 24px; // Iconos más grandes en tablet
+        height: 24px;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &:focus {
+        outline: 2px solid $color-white;
+        outline-offset: 2px;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+
+        @include respond-to(tablet) {
+          width: 24px; // SVG más grande en tablet
+          height: 24px;
+        }
+
+        path {
+          fill: $color-white;
+          transition: fill 0.3s ease;
+        }
+      }
+
+      &:hover svg path {
+        fill: $color-gold;
+      }
+    }
+  }
+}

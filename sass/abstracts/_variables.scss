@@ -1,0 +1,73 @@
+// ==========================================================================
+// TYPOGRAPHY
+// ==========================================================================
+
+// Fuentes principales basadas en las imágenes proporcionadas
+$font-primary: "Big Shoulders Display", sans-serif;
+$font-secondary: "Outfit", sans-serif;
+
+// Pesos de fuente
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// Tamaños de fuente
+$font-size-heading-xl: 96px;    // Heading XL
+$font-size-heading-l: 70px;     // Heading L  
+$font-size-heading-m: 60px;     // Heading M
+$font-size-heading-s: 36px;     // Heading S
+$font-size-body-m: 22px;        // Body M
+$font-size-body-s: 18px;        // Body S
+
+// Line heights
+$line-height-heading-xl: 88px;
+$line-height-heading-l: 70px;
+$line-height-heading-m: 50px;
+$line-height-heading-s: 36px;
+$line-height-body-m: 32px;
+$line-height-body-s: 28px;
+
+// ==========================================================================
+// COLORS
+// ==========================================================================
+
+// Colores principales basados en la paleta proporcionada
+$color-gold: #D5966C;           // RGB(213, 150, 108)
+$color-dark: #151515;           // RGB(21, 21, 21)
+$color-dark-grey: #444444;      // RGB(68, 68, 68)
+$color-white: #FFFFFF;          // RGB(255, 255, 255)
+
+// Colores para estados
+$color-primary: $color-dark;
+$color-secondary: $color-gold;
+$color-accent: $color-gold;
+$color-text: $color-dark;
+$color-text-light: $color-dark-grey;
+$color-background: $color-white;
+
+// ==========================================================================
+// BREAKPOINTS
+// ==========================================================================
+
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1440px;
+
+// ==========================================================================
+// SPACING
+// ==========================================================================
+
+$spacing-xs: 16px;
+$spacing-sm: 24px;
+$spacing-md: 32px;
+$spacing-lg: 40px;
+$spacing-xl: 56px;
+$spacing-xxl: 120px;
+
+// ==========================================================================
+// LAYOUT
+// ==========================================================================
+
+$container-max-width: 1110px;
+$container-padding: 16px;

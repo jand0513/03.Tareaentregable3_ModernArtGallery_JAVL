@@ -1,0 +1,425 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ==========================================================================
+// HERO SECTION - MOBILE FIRST
+// ==========================================================================
+
+.hero {
+  // Mobile: imagen arriba, contenido abajo
+  display: flex;
+  flex-direction: column;
+
+  @include respond-to(tablet) {
+    position: relative;
+    min-height: 700px;
+  }
+
+  @include respond-to(desktop) {
+    min-height: 800px;
+    max-height: 800px;
+    overflow: hidden;
+    display: flex; // Layout en flexbox para las 3 secciones horizontales
+    max-width: 1440px; // Ancho máximo de 1440px en desktop
+    margin: 0 auto; // Centrado horizontal del hero
+    
+    // Pseudo-elemento: fondo negro para la primera sección (título)
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 33.33%; // Primera tercera parte del hero
+      height: 100%;
+      background-color: $color-dark;
+      z-index: 1;
+    }
+    
+    // Pseudo-elemento: fondo blanco para la tercera sección (descripción/botón)
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 33.33%; // Última tercera parte del hero
+      height: 100%;
+      background-color: $color-white;
+      z-index: 1;
+    }
+  }
+
+  &__image {
+    // Mobile: imagen arriba en layout de columna
+    order: 1;
+    width: 100%;
+    line-height: 0; // Elimina espacios no deseados alrededor de la imagen
+
+    @include respond-to(tablet) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 100%;
+    }
+
+    @include respond-to(desktop) {
+      width: 33.33%; // Segunda sección del hero (sección central para imagen)
+      left: 33.33%; // Posicionada después del fondo negro de la primera sección
+      height: 100%; // Altura completa del contenedor hero (800px)
+      z-index: 2; // Nivel superior a los pseudo-elementos de fondo
+    }
+
+    // Elementos picture e img: eliminar espacios y márgenes no deseados
+    picture {
+      display: block;
+      line-height: 0; // Elimina espacios de línea heredados
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%; // Picture ocupa toda la altura disponible del contenedor
+    }
+
+    img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: 0; // Elimina cualquier border por defecto
+      outline: 0; // Elimina outline por defecto
+
+      @include respond-to(tablet) {
+        height: 100%; // Ocupa toda la altura del contenedor (700px)
+        width: 100%; // Asegurar ancho completo
+        object-fit: cover; // Mantener proporción y cubrir el área
+      }
+
+      @include respond-to(desktop) {
+        height: 100%; // Ocupa toda la altura del contenedor (800px)
+        width: 100%; // Asegurar ancho completo
+        object-fit: cover; // Mantener proporción y cubrir el área
+      }
+    }
+  }
+
+  &__content {
+    // Mobile: contenido abajo
+    order: 2;
+    padding: $spacing-lg 0;
+    padding-right: 0%;
+
+    @include respond-to(tablet) {
+      position: absolute;
+      top: 0;
+      right: -40px;
+      width: 60%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: $spacing-xl;
+      z-index: 2;
+    }
+
+    @include respond-to(desktop) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; // Ancho completo para permitir grid de 2 columnas
+      height: 100%;
+      display: grid; // Sistema de grid para posicionar título y contenido derecho
+      grid-template-columns: 50% 50%; // 2 columnas iguales de 50% cada una
+      grid-template-rows: auto auto; // 2 filas con altura automática
+      align-items: center;
+      padding: 0;
+      z-index: 3; // Nivel superior a imagen y pseudo-elementos de fondo
+    }
+
+    .container {
+      @include respond-to(desktop) {
+        display: contents; // Permite que los elementos hijos hereden el grid del padre
+        width: 100%;
+        max-width: none;
+        padding: 0;
+      }
+    }
+  }
+
+  &__title {
+    @include heading-xl;
+    color: $color-dark;
+    margin-bottom: $spacing-sm;
+
+    @include respond-to(desktop) {
+      color: $color-white; // Texto blanco para contrastar con el fondo negro
+      margin-bottom: 0;
+      grid-column: 1 / 2; // Posicionado en la primera columna del grid
+      grid-row: 1 / 3; // Ocupa ambas filas verticalmente (centrado completo)
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; // Alineado al lado izquierdo
+      text-align: left; // Texto alineado a la izquierda
+      padding: 0 $spacing-xxl;
+    }
+  }
+
+  &__description {
+    @include body-m;
+    color: $color-text-light;
+    margin-bottom: $spacing-lg;
+
+    @include respond-to(desktop) {
+      color: $color-dark;
+      margin-bottom: 0; // Sin margen porque el gap se controla en el contenedor padre
+      text-align: left; // Alineación a la izquierda para consistencia con el contenedor
+    }
+  }
+
+  // Contenedor que agrupa descripción y botón en la segunda columna del hero
+  &__content-right {
+    @include respond-to(desktop) {
+      grid-column: 2 / 3; // Posicionado en la segunda columna del grid
+      grid-row: 1 / 3; // Ocupa ambas filas verticalmente
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; // Alineación a la izquierda del contenedor
+      justify-content: center; // Centrado verticalmente
+      padding: 0 145px;
+      gap: 1rem; // Espaciado de 1rem entre descripción y botón
+    }
+  }
+
+  // Botón principal del hero
+  .btn--primary {
+    @include respond-to(desktop) {
+      margin-top: 0; // Sin margen superior porque se controla con gap del contenedor
+      align-self: flex-start; // Alineado a la izquierda del contenedor
+    }
+  }
+}
+
+// ==========================================================================
+// GALLERY SECTION - MOBILE FIRST
+// ==========================================================================
+
+.gallery {
+  padding: $spacing-xl 0;
+
+  @include respond-to(tablet) {
+    padding: $spacing-xxl 0;
+  }
+
+  @include respond-to(desktop) {
+    min-height: 1110px; // Altura mínima para asegurar espacio suficiente
+    overflow: visible; // Permite que el contenido se expanda naturalmente
+    position: relative; // Contexto de posicionamiento para elementos hijos
+  }
+
+  // Contenedor que agrupa imagen de cabecera e introducción en grid de 2 columnas
+  &__header {
+    // Mobile: layout en columna por defecto
+    
+    @include respond-to(tablet) {
+      display: grid;
+      grid-template-columns: 1fr 1fr; // Dos columnas iguales
+      gap: $spacing-xl;
+      align-items: start; // Alineación superior de elementos
+      margin-bottom: $spacing-xl;
+    }
+  }
+
+  // Imagen de cabecera de la galería
+  &__header-image {
+    margin-bottom: $spacing-lg;
+
+    @include respond-to(tablet) {
+      order: 2; // Posicionada a la derecha en tablet+
+      margin-bottom: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+
+      @include respond-to(tablet) {
+        height: 400px;
+      }
+
+      @include respond-to(desktop) {
+        height: 400px;
+      }
+    }
+  }
+
+  // Contenedor principal para el texto de introducción y el grid de contenido
+  &__main {
+    // Mobile: layout en columna por defecto
+    display: flex;
+    flex-direction: column;
+    
+    @include respond-to(tablet) {
+      display: block; // Cambio a block para eliminar flex en tablet+
+    }
+  }
+
+  // Texto de introducción "Your day at the gallery"
+  &__intro {
+    margin-bottom: $spacing-lg;
+
+    @include respond-to(tablet) {
+      order: 1; // Posicionado a la izquierda en el grid header
+      margin-bottom: 0;
+      flex: 0 0 400px; // Ancho fijo de 400px para el texto
+    }
+
+    h2 {
+      @include heading-m;
+      color: $color-dark;
+      margin-bottom: $spacing-sm;
+
+      @include respond-to(desktop) {
+        margin-bottom: $spacing-md;
+      }
+    }
+
+    p {
+      @include body-m;
+      color: $color-text-light;
+    }
+  }
+
+  // Contenedor principal para el grid de imágenes y CTA
+  &__content {
+    // Mobile: flujo normal en columna
+    
+    @include respond-to(tablet) {
+      display: grid; // Sistema de grid para organizar imágenes y CTA
+      grid-template-columns: 60% 40%; // Primera columna 60%, segunda 40%
+      grid-template-rows: 1fr 1.4fr; // Primera fila proporcional 1, segunda 1.4
+      gap: 11px;
+    }
+
+    @include respond-to(desktop) {
+      display: grid; // Confirmación de grid para desktop
+      grid-template-columns: 1fr 1fr; // Dos columnas iguales en desktop
+      grid-template-rows: 1fr 1.4fr; // Mantiene las mismas proporciones que tablet
+      gap: $spacing-md;
+    }
+  }
+
+  // Gallery Images Container - solo para mobile
+  &__images {
+    margin-bottom: $spacing-lg;
+
+    @include respond-to(tablet) {
+      // En tablet+ las imágenes van directamente en el grid principal
+      display: contents; // Permite que los hijos tomen el lugar del contenedor
+      margin-bottom: 0;
+    }
+  }
+
+  &__image {
+    margin-bottom: $spacing-sm;
+
+    @include respond-to(tablet) {
+      margin-bottom: 0;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+
+      @include respond-to(tablet) {
+        height: 100%;
+      }
+    }
+
+    // Mobile: todas las imágenes en columna
+    // Tablet: grid layout 2 columnas / Desktop: grid layout 2 columnas
+    &--1 {
+      @include respond-to(tablet) {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3; // Ocupa ambas filas (1 y 2)
+
+        img {
+          height: 100%; // Altura 100% para cubrir el espacio completo
+        }
+      }
+
+      @include respond-to(desktop) {
+        grid-column: 2 / 3; // Segunda columna
+        grid-row: 1 / 2; // Primera fila
+
+        img {
+          height: 100%;
+        }
+      }
+    }
+
+    &--3 {
+      @include respond-to(tablet) {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2; // Solo primera fila (50% del alto)
+
+        img {
+          height: 100%; // Altura 100% para ocupar toda la fila asignada
+        }
+      }
+
+      @include respond-to(desktop) {
+        grid-column: 1 / 2; // Primera columna
+        grid-row: 1 / 3; // Ambas filas (ocupa 2 filas)
+
+        img {
+          height: 720px; // Altura fija de 720px como especificaste
+          width: 100%;
+          object-fit: cover; // Mantener proporción y cubrir el área
+        }
+      }
+    }
+  }
+
+  // Call to Action Block
+  &__cta {
+    background-color: $color-dark;
+    color: $color-white;
+    padding: $spacing-lg;
+
+    @include respond-to(tablet) {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3; // Segunda fila (50% del alto)
+      padding: $spacing-xl;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @include respond-to(desktop) {
+      grid-column: 2 / 3; // Segunda columna (corregido para grid de 2 columnas)
+      grid-row: 2 / 3; // Segunda fila
+      padding: $spacing-xl;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h3 {
+      @include heading-m;
+      color: $color-white;
+      margin-bottom: $spacing-sm;
+
+      @include respond-to(desktop) {
+        margin-bottom: $spacing-md;
+      }
+    }
+
+    p {
+      @include body-m;
+      color: $color-white;
+    }
+  }
+}

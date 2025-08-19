@@ -1,0 +1,109 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ==========================================================================
+// CONTAINER
+// ==========================================================================
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+
+  @include respond-to(tablet) {
+    padding: 0 39px;
+  }
+
+  @include respond-to(desktop) {
+    padding: 0;
+  }
+}
+
+// ==========================================================================
+// GRID SYSTEM
+// ==========================================================================
+
+.grid {
+  display: grid;
+  gap: $spacing-sm;
+
+  &--2-cols {
+    grid-template-columns: 1fr;
+
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-lg;
+    }
+
+    @include respond-to(desktop) {
+      gap: $spacing-xl;
+    }
+  }
+
+  &--3-cols {
+    grid-template-columns: 1fr;
+
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(desktop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &--auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+// ==========================================================================
+// FLEXBOX UTILITIES
+// ==========================================================================
+
+.flex {
+  display: flex;
+
+  &--center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--between {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &--wrap {
+    flex-wrap: wrap;
+  }
+}
+
+// ==========================================================================
+// SPACING UTILITIES
+// ==========================================================================
+
+.section {
+  padding: $spacing-xl 0;
+
+  @include respond-to(tablet) {
+    padding: $spacing-xxl 0;
+  }
+
+  &--small {
+    padding: $spacing-lg 0;
+  }
+
+  &--large {
+    padding: $spacing-xxl 0;
+
+    @include respond-to(desktop) {
+      padding: 180px 0;
+    }
+  }
+}
